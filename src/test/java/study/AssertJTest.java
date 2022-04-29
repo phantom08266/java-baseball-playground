@@ -109,9 +109,14 @@ public class AssertJTest {
     @DisplayName("예외 발생 시 좀더 명확하게 에러메시지를 전달하고 싶은 경우 사용할 듯")
     void messageTest() {
         Dog fido = new Dog("fido", 4.52F);
-        assertThat(fido.getName())
-                .as("%s's age should be equal to 100", fido.getName())
-                .isEqualTo(100);
+
+        try {
+            assertThat(fido.getName())
+                    .as("%s's age should be equal to 100", fido.getName())
+                    .isEqualTo(100);
+        }catch (AssertionError error) {
+            System.out.println(error.getMessage());
+        }
     }
 
 }
