@@ -24,3 +24,24 @@ git checkout main // 기본 브랜치가 main인 경우
 git checkout -b 브랜치이름
 ex) git checkout -b apply-feedback
 ```
+
+## 야구게임 기능 구현
+
+### 구현 Class
+- BaseBallNumberMaker => 컴퓨터 랜덤 숫자 생성 책임 담당
+- BaseBallView => 야구게임 UI표출담당
+- BaseBallGameMachine => 입력 숫자값 검증(스트라이크, 볼 등)
+- GameStartor => 게임 시작/종료 담당
+- 각 클래스별 단위테스트 작성
+
+```
+feat BaseBallNumberMaker 클래스 구현
+test BaseBallNumberMaker 클래스 단위테스트 구현
+feat BaseBallView 클래스 구현
+test BaseBallView 클래스 단위테스트 구현
+feat BaseBallGameMachine 클래스 구현
+test BaseBallGameMachine 클래스 단위테스트 구현
+feat GameStartor 클래스 구현
+test GameStartor 클래스 단위테스트 구현
+refactor 코드 리팩터링
+```
