@@ -16,7 +16,6 @@ class CalculatorTest {
     private Calculator calculator;
     @BeforeEach
     void init() {
-        System.out.println("나 호출된다");
         calculator = new Calculator();
         Scanner scanner = new Scanner(args);
         String readLine = scanner.nextLine();
@@ -24,15 +23,7 @@ class CalculatorTest {
     }
 
     @Test
-    void test1() {
-        Arrays.stream(readValues).forEach(value -> {
-            int number = Integer.parseInt(value);
-            System.out.println(number);
-        });
-    }
-
-    @Test
-    void test2(){
+    void test1(){
         Assertions.assertThat(calculator.totalArgsCalculate(readValues)).isEqualTo(10);
     }
 }
