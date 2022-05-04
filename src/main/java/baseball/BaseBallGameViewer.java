@@ -6,17 +6,22 @@ public class BaseBallGameViewer {
 
     private final UserGameNumberController userGameNumber;
 
-    public BaseBallGameViewer(BaseBallGameMachine baseBallGameMachine, UserGameNumberController userGameNumber) {
+    private final BaseBallNumberMaker baseBallNumberMaker;
+
+    public BaseBallGameViewer(BaseBallGameMachine baseBallGameMachine, UserGameNumberController userGameNumber, BaseBallNumberMaker baseBallNumberMaker) {
         this.baseBallGameMachine = baseBallGameMachine;
         this.userGameNumber = userGameNumber;
+        this.baseBallNumberMaker = baseBallNumberMaker;
     }
 
     public void show() {
         boolean gameLoop = true;
+        String randomGameNumber = baseBallNumberMaker.createRandomGameNumber();
+
         while (gameLoop) {
             String userInputGameNumber = userGameNumber.getGameNumber();
 
-            if (baseBallGameMachine.validation(userInputGameNumber)) break;
+            if (baseBallGameMachine.validation(userInputGameNumber, randomGameNumber)) break;
         }
     }
 }

@@ -1,29 +1,21 @@
 package baseball;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class BaseBallGameMachine {
 
-    private BaseBallNumberMaker baseBallNumberMaker;
+    public boolean validation(String userInputGameNumber, String machineGameNumber) {
+        System.out.println("컴퓨터 숫자 : "+ machineGameNumber);
+        if (machineGameNumber.equals(userInputGameNumber)) return true;
 
-    public BaseBallGameMachine(BaseBallNumberMaker baseBallNumberMaker) {
-        this.baseBallNumberMaker = baseBallNumberMaker;
-    }
-
-    public boolean validation(String userInputGameNumber) {
-        String randomGameNumber = baseBallNumberMaker.createRandomGameNumber();
-        System.out.println("컴퓨터 숫자 : "+ randomGameNumber);
-        if (randomGameNumber.equals(userInputGameNumber)) return true;
-
-        checkBallGameNumber(userInputGameNumber, randomGameNumber);
-        checkStrikeGameNumber(userInputGameNumber, randomGameNumber);
+        validBallGameNumber(userInputGameNumber, machineGameNumber);
+        validStrikeGameNumber(userInputGameNumber, machineGameNumber);
         System.out.println();
 
         return false;
     }
 
-    private void checkStrikeGameNumber(String userNumber, String machineNumber) {
+    private void validStrikeGameNumber(String userNumber, String machineNumber) {
         char[] userNumbers = userNumber.toCharArray();
         char[] machineNumbers = machineNumber.toCharArray();
         int loopCount = userNumber.length();
@@ -35,7 +27,7 @@ public class BaseBallGameMachine {
         System.out.print(String.format("%d스트라이크", strikeCount));
     }
 
-    private void checkBallGameNumber(String userNumber, String machineNumber) {
+    private void validBallGameNumber(String userNumber, String machineNumber) {
 
         long ballCount = userNumber.chars()
                 .mapToObj(c -> (char) c)

@@ -19,6 +19,9 @@ class BaseBallGameViewerTest {
     @Mock
     UserGameNumberController userGameNumberController;
 
+    @Mock
+    BaseBallNumberMaker baseBallNumberMaker;
+
     @InjectMocks
     private BaseBallGameViewer baseBallGameViewer;
 
@@ -27,9 +30,11 @@ class BaseBallGameViewerTest {
     @DisplayName("컴퓨터가 만든 게임번호와 사용자가 입력한 게임번호가 일치하여 루프를 빠져나온다.")
     void test1() {
         //given
+        String machineNumber = "123";
         String userGameNumber = "123";
+        given(baseBallNumberMaker.createRandomGameNumber()).willReturn(machineNumber);
         given(userGameNumberController.getGameNumber()).willReturn(userGameNumber);
-        given(baseBallGameMachine.validation(userGameNumber)).willReturn(true);
+        given(baseBallGameMachine.validation(userGameNumber, userGameNumber)).willReturn(true);
 
         //when then
         baseBallGameViewer.show();

@@ -39,4 +39,10 @@ class BaseBallNumberMakerTest {
     void test3() {
         assertThat(randomGameNumber).hasSize(3);
     }
+
+    @Test
+    @DisplayName("생성한 게임 숫자는 서로다른 값을 가져야 한다")
+    void test4() {
+        //Todo
+    }
 }
