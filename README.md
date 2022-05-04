@@ -29,19 +29,33 @@ ex) git checkout -b apply-feedback
 
 ### 구현 Class
 - BaseBallNumberMaker => 컴퓨터 랜덤 숫자 생성 책임 담당
-- BaseBallView => 야구게임 UI표출담당
+- BaseBallGameViewer => 야구게임 UI표출담당
 - BaseBallGameMachine => 입력 숫자값 검증(스트라이크, 볼 등)
+- UserGameNumberController => 사용자 입력 담당
 - GameStartor => 게임 시작/종료 담당
 - 각 클래스별 단위테스트 작성
 
 ```
 feat BaseBallNumberMaker 클래스 구현
 test BaseBallNumberMaker 클래스 단위테스트 구현
-feat BaseBallView 클래스 구현
-test BaseBallView 클래스 단위테스트 구현
+
+feat BaseBallGameViewer 클래스 구현
+test BaseBallGameViewer 클래스 단위테스트 구현
+
 feat BaseBallGameMachine 클래스 구현
 test BaseBallGameMachine 클래스 단위테스트 구현
+
+feat UserGameNumberController 클래스 구현
+test UserGameNumberController 클래스 단위테스트 구현
+
 feat GameStartor 클래스 구현
 test GameStartor 클래스 단위테스트 구현
+
 refactor 코드 리팩터링
 ```
+
+### 변경 History
+- UserGameNumberController.java 추가(22.05.03)
+  - 처음엔 BaseBallGameViewer에서 처리하려고 계획하였음.
+  - 하지만 단위테스트를 잘 작성하기위해 사용자 입력을 받는 클래스를 별도로 만들었음.
+  - 만들고 보니 오히려 더 명확하게 클래스 책임이 분리되었고 깔끔해짐.
