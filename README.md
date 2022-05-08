@@ -46,9 +46,6 @@ feat BaseBallGameMachine, UserGameNumberController클래스 구현
 test BaseBallGameMachine, UserGameNumberController 클래스 단위테스트 구현
 
 feat GameStartor 클래스 구현
-test GameStartor 클래스 단위테스트 구현
-
-refactor 코드 리팩터링
 ```
 
 ### 변경 History
