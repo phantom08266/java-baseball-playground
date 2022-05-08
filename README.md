@@ -25,10 +25,15 @@ git checkout -b 브랜치이름
 ex) git checkout -b apply-feedback
 ```
 
-## 기능구현 Todo List
+### 기능구현 Todo List
 ```
 user / com
 1,3     1,3 strick
 1,3     2,3 ball
 1,3     2,4 noting
+
+com / user
+123   1,1 strike
+123   2,1 ball
+123   1,4 noting
 ```

@@ -5,4 +5,8 @@ public enum GameStatus {
     BALL,
     NOTING
     ;
+
+    public boolean isNoting() {
+        return this == GameStatus.NOTING;
+    }
 }

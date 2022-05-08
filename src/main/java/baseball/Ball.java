@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.Objects;
+
 public class Ball {
 
     private final int position;
@@ -14,14 +16,10 @@ public class Ball {
         if (this.isBall(userBall)) {
             return GameStatus.BALL;
         }
-        if (this.isNoting(userBall)) {
-            return GameStatus.NOTING;
+        if (this.equals(userBall)) {
+            return GameStatus.STRIKE;
         }
-        return GameStatus.STRIKE;
-    }
-
-    private boolean isNoting(Ball userBall) {
-        return !isSamePosition(userBall) && !gameBall.isSameBall(userBall.gameBall);
+        return GameStatus.NOTING;
     }
 
     private boolean isBall(Ball userBall) {
@@ -30,5 +28,22 @@ public class Ball {
 
     private boolean isSamePosition(Ball userBall) {
         return this.position == userBall.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Ball ball = (Ball) o;
+        return position == ball.position && gameBall.equals(ball.gameBall);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, gameBall);
     }
 }
