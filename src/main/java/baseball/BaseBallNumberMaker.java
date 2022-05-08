@@ -1,10 +1,8 @@
 package baseball;
 
-import java.util.HashSet;
-import java.util.Random;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Stream;
 
 public class BaseBallNumberMaker {
 
@@ -12,15 +10,22 @@ public class BaseBallNumberMaker {
     private int MAX = 9;
     private int MIN = 1;
 
-    public String createRandomGameNumber() {
-        Set<Integer> gameNumbers = new HashSet();
+    public Set<Integer> createRandomGameNumber() {
+        Set<Integer> gameNumbers = new LinkedHashSet();
         ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
-
-        while (true) {
+        boolean loop = true;
+        while (loop) {
             int num = threadLocalRandom.nextInt(MIN, MAX);
             gameNumbers.add(num);
-            if (gameNumbers.size() == GAME_NUMBER_COUNT) break;
+            loop = !checkGameNumberSize(gameNumbers);
         }
-        return gameNumbers.toString().replaceAll("[ ]", "");
+        return gameNumbers;
+    }
+
+    private boolean checkGameNumberSize(Set<Integer> gameNumbers) {
+        if (gameNumbers.size() == GAME_NUMBER_COUNT) {
+            return true;
+        }
+        return false;
     }
 }

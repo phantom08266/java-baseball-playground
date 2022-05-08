@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.Set;
+
 public class BaseBallGameViewer {
 
     private final BaseBallGameMachine baseBallGameMachine;
@@ -16,12 +18,12 @@ public class BaseBallGameViewer {
 
     public void show() {
         boolean gameLoop = true;
-        String randomGameNumber = baseBallNumberMaker.createRandomGameNumber();
+        Set<Integer> randomGameNumbers = baseBallNumberMaker.createRandomGameNumber();
 
         while (gameLoop) {
-            String userInputGameNumber = userGameNumber.getGameNumber();
+            Set<Integer> userGameNumbers = this.userGameNumber.getGameNumber();
 
-            if (baseBallGameMachine.validation(userInputGameNumber, randomGameNumber)) break;
+            gameLoop = !baseBallGameMachine.validation(userGameNumbers, randomGameNumbers);
         }
     }
 }

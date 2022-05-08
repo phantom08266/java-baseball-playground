@@ -42,11 +42,8 @@ test BaseBallNumberMaker 클래스 단위테스트 구현
 feat BaseBallGameViewer 클래스 구현
 test BaseBallGameViewer 클래스 단위테스트 구현
 
-feat BaseBallGameMachine 클래스 구현
-test BaseBallGameMachine 클래스 단위테스트 구현
-
-feat UserGameNumberController 클래스 구현
-test UserGameNumberController 클래스 단위테스트 구현
+feat BaseBallGameMachine, UserGameNumberController클래스 구현
+test BaseBallGameMachine, UserGameNumberController 클래스 단위테스트 구현
 
 feat GameStartor 클래스 구현
 test GameStartor 클래스 단위테스트 구현
@@ -55,7 +52,15 @@ refactor 코드 리팩터링
 ```
 
 ### 변경 History
-- UserGameNumberController.java 추가(22.05.03)
+- UserGameNumberController.java 추가
   - 처음엔 BaseBallGameViewer에서 처리하려고 계획하였음.
   - 하지만 단위테스트를 잘 작성하기위해 사용자 입력을 받는 클래스를 별도로 만들었음.
   - 만들고 보니 오히려 더 명확하게 클래스 책임이 분리되었고 깔끔해짐.
+    
+</br>
+
+- 게임 값을 변환 시 String을 그대로 사용하였지만 Set의 순서보장인 LinkedHashSet을 사용함.
+  
+</br>
+
+- BaseBallGameMachine, UserGameNumberController 이 서로간의 밀접한 기능임에 따라 같이 구현 및 단위테스트 구현

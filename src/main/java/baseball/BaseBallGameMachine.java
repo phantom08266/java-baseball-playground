@@ -1,39 +1,49 @@
 package baseball;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class BaseBallGameMachine {
 
-    public boolean validation(String userInputGameNumber, String machineGameNumber) {
-        System.out.println("컴퓨터 숫자 : "+ machineGameNumber);
-        if (machineGameNumber.equals(userInputGameNumber)) return true;
+    public boolean validation(Set<Integer> userInputGameNumbers, Set<Integer> machineGameNumbers) {
+        System.out.println("컴퓨터 숫자 : " + machineGameNumbers.toString());
+        if (validSameGameNumber(userInputGameNumbers, machineGameNumbers)) {
+            return true;
+        }
 
-        validBallGameNumber(userInputGameNumber, machineGameNumber);
-        validStrikeGameNumber(userInputGameNumber, machineGameNumber);
+        long ballCount = validBallGameNumber(userInputGameNumbers, machineGameNumbers);
+        long strikeCount = validStrikeGameNumber(userInputGameNumbers, machineGameNumbers);
+
+        System.out.print(String.format("%d볼 ", ballCount));
+        System.out.print(String.format("%d스트라이크", strikeCount));
         System.out.println();
 
         return false;
     }
 
-    private void validStrikeGameNumber(String userNumber, String machineNumber) {
-        char[] userNumbers = userNumber.toCharArray();
-        char[] machineNumbers = machineNumber.toCharArray();
-        int loopCount = userNumber.length();
+    protected boolean validSameGameNumber(Set<Integer> userNumbers, Set<Integer> machineNumbers) {
+        long equalCount = getEqualCount(userNumbers, machineNumbers);
 
-        long strikeCount = Stream.iterate(0, i -> i + 1).limit(loopCount)
-                .filter(i -> userNumbers[i] == machineNumbers[i])
-                .count();
-
-        System.out.print(String.format("%d스트라이크", strikeCount));
+        return equalCount == machineNumbers.size();
     }
 
-    private void validBallGameNumber(String userNumber, String machineNumber) {
+    protected long validStrikeGameNumber(Set<Integer> userNumbers, Set<Integer> machineNumbers) {
+        return getEqualCount(userNumbers, machineNumbers);
+    }
 
-        long ballCount = userNumber.chars()
-                .mapToObj(c -> (char) c)
-                .filter(item -> machineNumber.contains(item.toString()))
-                .count();
+    protected long validBallGameNumber(Set<Integer> userNumbers, Set<Integer> machineNumbers) {
+        return  userNumbers.stream()
+            .filter(item -> machineNumbers.contains(item))
+            .count();
+    }
 
-        System.out.print(String.format("%d볼 ", ballCount));
+    protected long getEqualCount(Set<Integer> userNumbers, Set<Integer> machineNumbers) {
+        int loopCount = userNumbers.size();
+        Integer[] userNumberArray = userNumbers.toArray(new Integer[loopCount]);
+        Integer[] machineNumberArray = machineNumbers.toArray(new Integer[loopCount]);
+
+        return Stream.iterate(0, i -> i + 1).limit(loopCount)
+            .filter(i -> userNumberArray[i].equals(machineNumberArray[i]))
+            .count();
     }
 }
