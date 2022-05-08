@@ -15,6 +15,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core:3.+" // Mock Test를 위해 추가
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.5.1' // MockitoExtension 사용을 위해 추가
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.8.2'
+    testImplementation 'org.mockito:mockito-inline:2.13.0' // final클래스 Scanner를 Mock 하기위해 추가
 
 }
 

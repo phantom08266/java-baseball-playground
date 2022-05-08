@@ -1,19 +1,17 @@
 package baseball;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 class BaseBallNumberMakerTest {
 
     private BaseBallNumberMaker baseBallNumberMaker;
-    private String randomGameNumber;
+    private Set<Integer> randomGameNumber;
 
     @BeforeEach
     void init() {
@@ -24,25 +22,12 @@ class BaseBallNumberMakerTest {
     @Test
     @DisplayName("0이 포함되어있으면 안된다.")
     void test() {
-        assertThat(randomGameNumber).doesNotContain("0");
-    }
-
-    @Test
-    @DisplayName("야구 랜던값은 111 ~ 999범위를 가진다")
-    void test2() {
-        assertThat(randomGameNumber).isLessThanOrEqualTo("999");
-        assertThat(randomGameNumber).isGreaterThanOrEqualTo("111");
+        assertThat(randomGameNumber).doesNotContain(0);
     }
 
     @Test
     @DisplayName("야구게임 숫자는 3자리다")
-    void test3() {
+    void test2() {
         assertThat(randomGameNumber).hasSize(3);
-    }
-
-    @Test
-    @DisplayName("생성한 게임 숫자는 서로다른 값을 가져야 한다")
-    void test4() {
-        //Todo
     }
 }
